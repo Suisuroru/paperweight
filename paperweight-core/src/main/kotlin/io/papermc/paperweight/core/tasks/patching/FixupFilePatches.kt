@@ -37,7 +37,7 @@ import org.gradle.api.tasks.UntrackedTask
 abstract class FixupFilePatches : BaseTask() {
 
     @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val repo: DirectoryProperty
 
     @get:Input

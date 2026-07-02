@@ -36,9 +36,7 @@ import org.gradle.api.provider.ProviderFactory
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.TaskAction
-import org.gradle.api.tasks.UntrackedTask
 
-@UntrackedTask(because = "Tasks are run on demand via API calls")
 abstract class AbstractPatchRouletteTask : BaseTask() {
     @get:Inject
     abstract val providers: ProviderFactory

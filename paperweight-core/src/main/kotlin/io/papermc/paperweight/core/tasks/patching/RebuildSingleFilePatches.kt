@@ -32,7 +32,6 @@ import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
-import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.InputFile
@@ -42,11 +41,10 @@ import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 
-@CacheableTask
 abstract class RebuildSingleFilePatches : BaseTask() {
 
     @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val upstream: DirectoryProperty
 
     @get:Nested
@@ -57,7 +55,7 @@ abstract class RebuildSingleFilePatches : BaseTask() {
         abstract val path: Property<String>
 
         @get:InputFile
-        @get:PathSensitive(PathSensitivity.RELATIVE)
+        @get:PathSensitive(PathSensitivity.NONE)
         abstract val outputFile: RegularFileProperty
 
         @get:OutputFile

@@ -37,7 +37,6 @@ import kotlin.io.path.createDirectories
 import kotlin.io.path.createParentDirectories
 import kotlin.io.path.exists
 import org.gradle.api.file.RegularFileProperty
-import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputFile
@@ -49,16 +48,14 @@ import org.w3c.dom.Element
 import org.w3c.dom.Node
 import org.xml.sax.InputSource
 
-@CacheableTask
 abstract class MergeCheckstyleConfigs : BaseTask() {
 
     @get:InputFile
-    @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val baseConfigFile: RegularFileProperty
 
     @get:InputFile
     @get:Optional
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val overrideConfigFile: RegularFileProperty
 
     @get:OutputFile

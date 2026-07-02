@@ -50,7 +50,7 @@ abstract class SetupPaperScript : BaseTask() {
     abstract val scriptName: Property<String>
 
     @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val root: DirectoryProperty
 
     init {

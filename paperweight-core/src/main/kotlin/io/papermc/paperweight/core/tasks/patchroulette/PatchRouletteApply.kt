@@ -38,7 +38,6 @@ import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
-import org.gradle.api.tasks.UntrackedTask
 import org.gradle.api.tasks.options.Option
 
 /**
@@ -57,11 +56,10 @@ import org.gradle.api.tasks.options.Option
  *           Paperweight will attempt to select exactly the provided patch paths.
  *           If any of the provided patches are not available, the task will fail.
  */
-@UntrackedTask(because = "Tasks are run on demand via API calls")
 abstract class PatchRouletteApply : AbstractPatchRouletteTask() {
 
     @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val patchDir: DirectoryProperty
 
     @get:Input

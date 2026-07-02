@@ -31,7 +31,6 @@ import org.eclipse.jgit.api.Git
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
-import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.InputFile
@@ -44,11 +43,10 @@ import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 import org.gradle.kotlin.dsl.*
 
-@CacheableTask
 abstract class SetupForkMinecraftSources : JavaLauncherTask() {
 
     @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val inputDir: DirectoryProperty
 
     @get:OutputDirectory
@@ -62,12 +60,12 @@ abstract class SetupForkMinecraftSources : JavaLauncherTask() {
 
     @get:InputFile
     @get:Optional
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val atFile: RegularFileProperty
 
     @get:Optional
     @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val libraryImports: DirectoryProperty
 
     @get:Input
