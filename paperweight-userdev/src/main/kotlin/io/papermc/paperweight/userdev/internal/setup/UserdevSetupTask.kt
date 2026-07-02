@@ -33,14 +33,18 @@ import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.services.ServiceReference
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.CompileClasspath
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 import org.gradle.internal.logging.progress.ProgressLoggerFactory
 import org.gradle.workers.WorkerExecutor
 
+@CacheableTask
 abstract class UserdevSetupTask : JavaLauncherTask() {
     @get:ServiceReference
     abstract val setupService: Property<UserdevSetup>
@@ -49,18 +53,21 @@ abstract class UserdevSetupTask : JavaLauncherTask() {
     abstract val workerExecutor: WorkerExecutor
 
     @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val devBundle: ConfigurableFileCollection
 
     @get:CompileClasspath
     abstract val decompilerConfig: ConfigurableFileCollection
 
     @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val paramMappingsConfig: ConfigurableFileCollection
 
     @get:CompileClasspath
     abstract val macheDecompilerConfig: ConfigurableFileCollection
 
     @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val macheConfig: ConfigurableFileCollection
 
     @get:CompileClasspath
@@ -70,9 +77,11 @@ abstract class UserdevSetupTask : JavaLauncherTask() {
     abstract val macheRemapperConfig: ConfigurableFileCollection
 
     @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val macheParamMappingsConfig: ConfigurableFileCollection
 
     @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val macheConstantsConfig: ConfigurableFileCollection
 
     @get:CompileClasspath

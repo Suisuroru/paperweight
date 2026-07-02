@@ -54,9 +54,11 @@ abstract class RebuildFilePatches : JavaLauncherTask() {
     abstract val verbose: Property<Boolean>
 
     @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val input: DirectoryProperty
 
     @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val base: DirectoryProperty
 
     @get:OutputDirectory
@@ -64,6 +66,7 @@ abstract class RebuildFilePatches : JavaLauncherTask() {
 
     @get:Optional
     @get:InputFile
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val atFile: RegularFileProperty
 
     @get:Optional
