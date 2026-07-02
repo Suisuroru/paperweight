@@ -37,7 +37,7 @@ import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.UntrackedTask
 import org.gradle.api.tasks.options.Option
 
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class PatchRouletteFinish : AbstractPatchRouletteTask() {
     @get:InputDirectory
     @get:PathSensitive(PathSensitivity.NONE)

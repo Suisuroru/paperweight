@@ -36,7 +36,7 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.UntrackedTask
 
 // To make the Git repos cacheable they must be zipped, this tasks extracts them again...
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class ExtractMinecraftSources : BaseTask() {
     @get:InputFile
     @get:PathSensitive(PathSensitivity.NONE)

@@ -42,7 +42,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.*
 import org.gradle.api.tasks.options.Option
 
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class ApplyFilePatches : BaseTask() {
 
     @get:Input

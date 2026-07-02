@@ -51,7 +51,7 @@ import org.gradle.api.tasks.UntrackedTask
 
 private data class LibraryImport(val libraryFileName: String, val importFilePath: String)
 
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class IndexLibraryFiles : BaseTask() {
 
     @get:InputFiles
@@ -100,7 +100,7 @@ abstract class IndexLibraryFiles : BaseTask() {
     }
 }
 
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class ImportLibraryFiles : BaseTask() {
 
     @get:InputFiles

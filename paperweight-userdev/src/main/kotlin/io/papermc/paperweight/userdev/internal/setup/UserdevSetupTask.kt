@@ -44,7 +44,7 @@ import org.gradle.api.tasks.UntrackedTask
 import org.gradle.internal.logging.progress.ProgressLoggerFactory
 import org.gradle.workers.WorkerExecutor
 
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class UserdevSetupTask : JavaLauncherTask() {
     @get:ServiceReference
     abstract val setupService: Property<UserdevSetup>

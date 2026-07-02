@@ -49,7 +49,7 @@ import org.w3c.dom.Element
 import org.w3c.dom.Node
 import org.xml.sax.InputSource
 
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class MergeCheckstyleConfigs : BaseTask() {
 
     @get:InputFile

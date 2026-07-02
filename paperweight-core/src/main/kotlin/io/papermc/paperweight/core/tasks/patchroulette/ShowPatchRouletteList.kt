@@ -28,7 +28,7 @@ import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.UntrackedTask
 import org.gradle.api.tasks.options.Option
 
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class ShowPatchRouletteList : AbstractPatchRouletteTask() {
 
     @get:Input

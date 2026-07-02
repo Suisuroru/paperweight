@@ -57,7 +57,7 @@ import org.gradle.api.tasks.options.Option
  *           Paperweight will attempt to select exactly the provided patch paths.
  *           If any of the provided patches are not available, the task will fail.
  */
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class PatchRouletteApply : AbstractPatchRouletteTask() {
 
     @get:InputDirectory

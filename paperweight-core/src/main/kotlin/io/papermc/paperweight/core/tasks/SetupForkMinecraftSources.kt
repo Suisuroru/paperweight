@@ -44,7 +44,7 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.UntrackedTask
 import org.gradle.kotlin.dsl.*
 
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class SetupForkMinecraftSources : JavaLauncherTask() {
 
     @get:InputDirectory

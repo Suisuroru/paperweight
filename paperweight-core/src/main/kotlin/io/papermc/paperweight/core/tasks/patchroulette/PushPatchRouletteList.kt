@@ -30,7 +30,7 @@ import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.UntrackedTask
 
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class PushPatchRouletteList : AbstractPatchRouletteTask() {
 
     @get:InputDirectory

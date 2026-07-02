@@ -24,7 +24,7 @@ package io.papermc.paperweight.core.tasks.patchroulette
 
 import org.gradle.api.tasks.UntrackedTask
 
-@UntrackedTask(because = "Tasks are registered internally")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class ClearPatchRouletteList : AbstractPatchRouletteTask() {
 
     override fun run() {
