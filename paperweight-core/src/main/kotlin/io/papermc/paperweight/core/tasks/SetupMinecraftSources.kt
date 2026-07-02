@@ -85,35 +85,35 @@ abstract class SetupMinecraftSources : JavaLauncherZippedTask() {
         atWorkingDir.set(layout.cache.resolve(paperTaskOutput(name = "${name}_atWorkingDir")))
     }
 
-    override fun run(rootDir: Path) {
+    override fun run(outputPath: Path) {
         val git: Git
         if (oldPaperCommit.isPresent) {
             val oldPaperDir = setupOldPaper()
 
-            if (rootDir.exists()) {
-                rootDir.deleteRecursive()
+            if (outputPath.exists()) {
+                outputPath.deleteRecursive()
             }
 
-            rootDir.createDirectories()
+            outputPath.createDirectories()
 
             git = Git.cloneRepository()
-                .setDirectory(rootDir.toFile())
+                .setDirectory(outputPath.toFile())
                 .setRemote("old")
                 .setURI(oldPaperDir.resolve("paper-server/src/minecraft/java").absolutePathString())
                 .call()
             git.reset().setMode(ResetCommand.ResetType.HARD).setRef("ATs").call()
 
             // Now delete all MC sources so that when we copy in current and commit, it creates an 'update commit'
-            rootDir.resolve("com/mojang").deleteRecursive()
-            rootDir.resolve("net/minecraft").deleteRecursive()
-        } else if (rootDir.resolve(".git/HEAD").isRegularFile()) {
-            git = Git.open(rootDir.toFile())
+            outputPath.resolve("com/mojang").deleteRecursive()
+            outputPath.resolve("net/minecraft").deleteRecursive()
+        } else if (outputPath.resolve(".git/HEAD").isRegularFile()) {
+            git = Git.open(outputPath.toFile())
             git.reset().setRef("ROOT").setMode(ResetCommand.ResetType.HARD).call()
         } else {
-            rootDir.createDirectories()
+            outputPath.createDirectories()
 
             git = Git.init()
-                .setDirectory(rootDir.toFile())
+                .setDirectory(outputPath.toFile())
                 .setInitialBranch("main")
                 .call()
 
@@ -128,7 +128,7 @@ abstract class SetupMinecraftSources : JavaLauncherZippedTask() {
             inputFileFs.walkSequence()
                 .filter(predicate.get()::test)
                 .forEach {
-                    val target = rootDir.resolve(it.toString().substring(1))
+                    val target = outputPath.resolve(it.toString().substring(1))
                     target.parent.createDirectories()
                     if (it.toString().endsWith(".nbt")) {
                         // nbt files are binary, so we can just copy them
@@ -154,8 +154,8 @@ abstract class SetupMinecraftSources : JavaLauncherZippedTask() {
 
             val result = PatchOperation.builder()
                 .logTo(LoggingOutputStream(logger, LogLevel.LIFECYCLE))
-                .basePath(rootDir.convertToPath())
-                .outputPath(rootDir.convertToPath())
+                .basePath(outputPath.convertToPath())
+                .outputPath(outputPath.convertToPath())
                 .patchesPath(mache.singleFile.toPath(), ArchiveFormat.ZIP)
                 .patchesPrefix("patches")
                 .level(codechicken.diffpatch.util.LogLevel.INFO)
@@ -178,8 +178,8 @@ abstract class SetupMinecraftSources : JavaLauncherZippedTask() {
             println("Applying access transformers...")
             ats.run(
                 launcher.get(),
-                rootDir,
-                rootDir,
+                outputPath,
+                outputPath,
                 atFile.path,
                 atWorkingDir.path,
             )
@@ -193,7 +193,7 @@ abstract class SetupMinecraftSources : JavaLauncherZippedTask() {
         }
 
         if (libraryImports.isPresent) {
-            libraryImports.path.copyRecursivelyTo(rootDir)
+            libraryImports.path.copyRecursivelyTo(outputPath)
 
             commitAndTag(git, "Imports", "paper Imports")
         }
