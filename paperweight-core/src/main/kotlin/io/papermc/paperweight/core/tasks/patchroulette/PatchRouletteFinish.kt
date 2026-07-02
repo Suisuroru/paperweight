@@ -32,10 +32,15 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
+import org.gradle.api.tasks.UntrackedTask
 import org.gradle.api.tasks.options.Option
 
+@UntrackedTask(because = "Tasks are run on demand via API calls")
 abstract class PatchRouletteFinish : AbstractPatchRouletteTask() {
     @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val patchDir: DirectoryProperty
 
     @get:OutputFile
