@@ -37,28 +37,28 @@ import kotlin.io.path.createDirectories
 import kotlin.io.path.createParentDirectories
 import kotlin.io.path.exists
 import org.gradle.api.file.RegularFileProperty
-import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.UntrackedTask
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import org.xml.sax.InputSource
 
-@CacheableTask
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class MergeCheckstyleConfigs : BaseTask() {
 
     @get:InputFile
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val baseConfigFile: RegularFileProperty
 
     @get:InputFile
     @get:Optional
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val overrideConfigFile: RegularFileProperty
 
     @get:OutputFile

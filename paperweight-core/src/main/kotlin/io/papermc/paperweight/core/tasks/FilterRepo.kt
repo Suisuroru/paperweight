@@ -29,7 +29,6 @@ import org.eclipse.jgit.api.Git
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
-import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.Optional
@@ -37,11 +36,12 @@ import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.UntrackedTask
 
-@CacheableTask
+@UntrackedTask(because = "Tasks are run on demand via API calls")
 abstract class FilterRepo : BaseTask() {
     @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val inputDir: DirectoryProperty
 
     @get:OutputDirectory
@@ -49,7 +49,7 @@ abstract class FilterRepo : BaseTask() {
 
     @get:InputDirectory
     @get:Optional
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val gitDir: DirectoryProperty
 
     @get:Input

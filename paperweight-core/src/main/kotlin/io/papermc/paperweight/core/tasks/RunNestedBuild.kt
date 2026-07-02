@@ -50,7 +50,7 @@ abstract class RunNestedBuild : BaseTask() {
     abstract val tasks: SetProperty<String>
 
     @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val projectDir: DirectoryProperty
 
     @get:Internal

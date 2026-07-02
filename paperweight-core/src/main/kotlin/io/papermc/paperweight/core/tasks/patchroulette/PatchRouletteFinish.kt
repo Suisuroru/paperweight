@@ -37,10 +37,10 @@ import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.UntrackedTask
 import org.gradle.api.tasks.options.Option
 
-@UntrackedTask(because = "Tasks are run on demand via API calls")
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class PatchRouletteFinish : AbstractPatchRouletteTask() {
     @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val patchDir: DirectoryProperty
 
     @get:OutputFile

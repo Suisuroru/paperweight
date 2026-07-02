@@ -40,10 +40,9 @@ import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.logging.LogLevel
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.*
-import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.options.Option
 
-@CacheableTask
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class ApplyFilePatches : BaseTask() {
 
     @get:Input

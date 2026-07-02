@@ -29,7 +29,6 @@ import java.nio.file.Path
 import kotlin.io.path.*
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
-import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.Optional
@@ -37,13 +36,14 @@ import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.UntrackedTask
 
-@CacheableTask
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class ApplyFeaturePatches : ControllableOutputTask() {
 
     @get:InputDirectory
     @get:Optional
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val base: DirectoryProperty
 
     @get:OutputDirectory

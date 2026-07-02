@@ -39,7 +39,6 @@ import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.FileCollection
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.logging.LogLevel
-import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Optional
@@ -48,14 +47,15 @@ import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.UntrackedTask
 
 private data class LibraryImport(val libraryFileName: String, val importFilePath: String)
 
-@CacheableTask
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class IndexLibraryFiles : BaseTask() {
 
     @get:InputFiles
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val libraries: ConfigurableFileCollection
 
     @get:OutputFile
@@ -100,25 +100,25 @@ abstract class IndexLibraryFiles : BaseTask() {
     }
 }
 
-@CacheableTask
+@UntrackedTask(because = "Task has already been registered internally")
 abstract class ImportLibraryFiles : BaseTask() {
 
     @get:InputFiles
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val libraries: ConfigurableFileCollection
 
     @get:InputFile
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val libraryFileIndex: RegularFileProperty
 
     @get:Optional
     @get:InputFiles
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val patches: ConfigurableFileCollection
 
     @get:Optional
     @get:InputFile
-    @get:PathSensitive(PathSensitivity.RELATIVE)
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val devImports: RegularFileProperty
 
     @get:OutputDirectory
