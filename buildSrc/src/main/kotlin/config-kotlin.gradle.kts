@@ -23,7 +23,7 @@ kotlin {
     }
     compilerOptions {
         jvmTarget = JvmTarget.JVM_17
-        freeCompilerArgs = listOf("-Xjvm-default=all", "-Xjdk-release=17")
+        freeCompilerArgs = listOf("-jvm-default=all", "-Xjdk-release=17")
     }
 }
 
