@@ -38,7 +38,9 @@ import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.UntrackedTask
 
+@UntrackedTask(because = "Tasks are run on demand via API calls")
 abstract class PaperCheckstyleTask : Checkstyle() {
 
     @get:Input

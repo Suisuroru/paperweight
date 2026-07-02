@@ -40,9 +40,11 @@ import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.UntrackedTask
 import org.gradle.internal.logging.progress.ProgressLoggerFactory
 import org.gradle.workers.WorkerExecutor
 
+@UntrackedTask(because = "Tasks are registered internally")
 abstract class UserdevSetupTask : JavaLauncherTask() {
     @get:ServiceReference
     abstract val setupService: Property<UserdevSetup>

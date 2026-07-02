@@ -28,7 +28,9 @@ import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
+import org.gradle.api.tasks.UntrackedTask
 
+@UntrackedTask(because = "Tasks are registered internally")
 abstract class PushPatchRouletteList : AbstractPatchRouletteTask() {
 
     @get:InputDirectory

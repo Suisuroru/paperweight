@@ -40,7 +40,9 @@ import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.UntrackedTask
 
+@UntrackedTask(because = "Tasks are registered internally")
 abstract class RebuildSingleFilePatches : BaseTask() {
 
     @get:InputDirectory

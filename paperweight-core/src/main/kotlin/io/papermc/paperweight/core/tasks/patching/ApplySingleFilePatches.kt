@@ -48,8 +48,10 @@ import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.UntrackedTask
 import org.gradle.kotlin.dsl.*
 
+@UntrackedTask(because = "Tasks are registered internally")
 abstract class ApplySingleFilePatches : BaseTask() {
 
     @get:Inject
@@ -87,6 +89,7 @@ abstract class ApplySingleFilePatches : BaseTask() {
         abstract val path: Property<String>
 
         @get:InputFile
+        @get:PathSensitive(PathSensitivity.NONE)
         val upstreamFile: RegularFileProperty = objects.fileProperty().convention(upstream.file(path))
 
         @get:OutputFile

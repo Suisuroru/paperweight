@@ -36,9 +36,12 @@ import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.UntrackedTask
 
+@UntrackedTask(because = "Tasks are run on demand via API calls")
 abstract class FilterRepo : BaseTask() {
     @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.NONE)
     abstract val inputDir: DirectoryProperty
 
     @get:OutputDirectory
